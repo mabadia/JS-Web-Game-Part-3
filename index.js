@@ -1,22 +1,42 @@
-function newImage(url, left, bottom){
+function newImage(url) {
     let image = document.createElement('img')
     image.src = url
-    image.style.position = 'fixed'
-    image.style.left = left + 'px'
-    image.style.bottom = bottom + 'px'
     document.body.append(image)
     return image
 }
+function move(element) {
+    element.style.position = 'fixed'
+    function moveToCoordinates(left, bottom) {
+        element.style.left = left + 'px'
+        element.style.bottom = bottom + 'px'
+    }
+    return {
+        to: moveToCoordinates
+    }
+}
 
-newImage('assets/green-character.gif', 100, 250)
-newImage('assets/tree.png', 200, 450)
-newImage('assets/pillar.png', 350, 250)
-newImage('assets/pine-tree.png', 450, 350)
-newImage('assets/crate.png', 150, 350)
-newImage('assets/well.png', 500, 575)
+move(newImage('assets/green-character.gif')).to(100,250)
+move(newImage('assets/tree.png')).to(200, 450)
+move(newImage('assets/pillar.png')).to(350, 250)
+move(newImage('assets/pine-tree.png')).to(450, 350)
+move(newImage('assets/crate.png')).to(150, 350)
+move(newImage('assets/well.png')).to(500, 575)
 
 
-function newItem(url, left, bottom){
+// let greenCharacter = newImage('assets/green-character.gif')
+// // move(greenCharacter, 100, 250)
+// let thingThatMoveReturns = move(greenCharacter)
+// thingThatMoveReturns.to
+// thingThatMoveReturns.to(300, 300)
+// newImage('assets/green-character.gif', 100, 250)
+// newImage('assets/tree.png', 200, 450)
+// newImage('assets/pillar.png', 350, 250)
+// newImage('assets/pine-tree.png', 450, 350)
+// newImage('assets/crate.png', 150, 350)
+// newImage('assets/well.png', 500, 575)
+
+
+function newItem(url, left, bottom) {
     let item = newImage(url, left, bottom)
     item.addEventListener('click', () => {
         item.remove()
@@ -26,12 +46,15 @@ function newItem(url, left, bottom){
     })
     return item
 }
+move(newItem('assets/sword.png')).to(500, 555)
+move(newItem('assets/shield.png')).to(165, 335)
+move(newItem('assets/staff.png')).to(600, 250)
 
-newItem('assets/sword.png', 500, 555)
-newItem('assets/shield.png', 165, 335)
-newItem('assets/staff.png', 600, 250)
+// newItem('assets/sword.png', 500, 555)
+// newItem('assets/shield.png', 165, 335)
+// newItem('assets/staff.png', 600, 250)
 
-function newInventory(){
+function newInventory() {
     let inventory = document.createElement('div')
     inventory.style.position = 'fixed'
     inventory.style.bottom = '0px';
